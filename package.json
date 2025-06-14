@@ -1,0 +1,95 @@
+{
+  "name": "ludo-masters-web3",
+  "version": "1.0.0",
+  "description": "Next-generation multiplayer Ludo game with Web3 integration",
+  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend",
+    "smart-contracts"
+  ],
+  "scripts": {
+    "install:all": "npm install && npm run install:frontend && npm run install:backend && npm run install:contracts",
+    "install:frontend": "cd frontend && npm install",
+    "install:backend": "cd backend && npm install",
+    "install:contracts": "cd smart-contracts && npm install",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:contracts": "cd smart-contracts && npx hardhat node",
+    "build": "npm run build:frontend && npm run build:backend && npm run build:contracts",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "build:contracts": "cd smart-contracts && npx hardhat compile",
+    "test": "npm run test:frontend && npm run test:backend && npm run test:contracts",
+    "test:frontend": "cd frontend && npm test",
+    "test:backend": "cd backend && npm test",
+    "test:contracts": "cd smart-contracts && npx hardhat test",
+    "test:e2e": "playwright test",
+    "lint": "npm run lint:frontend && npm run lint:backend && npm run lint:contracts",
+    "lint:frontend": "cd frontend && npm run lint",
+    "lint:backend": "cd backend && npm run lint",
+    "lint:contracts": "cd smart-contracts && npm run lint",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,sol}\"",
+    "deploy:contracts": "cd smart-contracts && npm run deploy",
+    "deploy:frontend": "cd frontend && npm run build && vercel --prod",
+    "deploy:backend": "cd backend && npm run deploy",
+    "setup": "npm run install:all && npm run build:contracts && cd backend && npx prisma migrate dev",
+    "clean": "rm -rf node_modules frontend/node_modules backend/node_modules smart-contracts/node_modules",
+    "postinstall": "husky install"
+  },
+  "keywords": [
+    "ludo",
+    "web3",
+    "blockchain",
+    "game",
+    "multiplayer",
+    "nft",
+    "defi",
+    "react",
+    "nodejs",
+    "solidity"
+  ],
+  "author": "Ludo Masters Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/ludo-masters-web3.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/ludo-masters-web3/issues"
+  },
+  "homepage": "https://ludomasters.game",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.0.0",
+    "concurrently": "^8.2.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ],
+    "*.sol": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test"
+    }
+  }
+}

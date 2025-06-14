@@ -1,0 +1,349 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS Variables */
+:root {
+  --game-board-size: min(90vw, 90vh, 600px);
+  --token-size: calc(var(--game-board-size) / 20);
+  --dice-size: calc(var(--game-board-size) / 12);
+  --animation-duration: 0.3s;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Base Styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-secondary-100 dark:bg-secondary-800;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-secondary-300 dark:bg-secondary-600 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-secondary-400 dark:bg-secondary-500;
+  }
+  
+  /* Selection */
+  ::selection {
+    @apply bg-primary-200 text-primary-900;
+  }
+  
+  /* Focus styles */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary-500 ring-offset-2 ring-offset-background;
+  }
+}
+
+/* Component Styles */
+@layer components {
+  /* Button Variants */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+  }
+  
+  .btn-primary {
+    @apply bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800 shadow-sm hover:shadow-md;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary-100 text-secondary-900 hover:bg-secondary-200 active:bg-secondary-300 dark:bg-secondary-800 dark:text-secondary-100 dark:hover:bg-secondary-700;
+  }
+  
+  .btn-success {
+    @apply bg-success-600 text-white hover:bg-success-700 active:bg-success-800 shadow-sm hover:shadow-md;
+  }
+  
+  .btn-warning {
+    @apply bg-warning-600 text-white hover:bg-warning-700 active:bg-warning-800 shadow-sm hover:shadow-md;
+  }
+  
+  .btn-error {
+    @apply bg-error-600 text-white hover:bg-error-700 active:bg-error-800 shadow-sm hover:shadow-md;
+  }
+  
+  .btn-ghost {
+    @apply hover:bg-secondary-100 active:bg-secondary-200 dark:hover:bg-secondary-800 dark:active:bg-secondary-700;
+  }
+  
+  .btn-outline {
+    @apply border border-secondary-300 bg-transparent hover:bg-secondary-50 active:bg-secondary-100 dark:border-secondary-600 dark:hover:bg-secondary-800 dark:active:bg-secondary-700;
+  }
+  
+  /* Size variants */
+  .btn-xs {
+    @apply h-6 px-2 text-xs;
+  }
+  
+  .btn-sm {
+    @apply h-8 px-3 text-sm;
+  }
+  
+  .btn-md {
+    @apply h-10 px-4 text-sm;
+  }
+  
+  .btn-lg {
+    @apply h-12 px-6 text-base;
+  }
+  
+  .btn-xl {
+    @apply h-14 px-8 text-lg;
+  }
+  
+  /* Card Component */
+  .card {
+    @apply bg-white dark:bg-secondary-900 rounded-xl shadow-sm border border-secondary-200 dark:border-secondary-700;
+  }
+  
+  .card-header {
+    @apply p-6 pb-0;
+  }
+  
+  .card-body {
+    @apply p-6;
+  }
+  
+  .card-footer {
+    @apply p-6 pt-0;
+  }
+  
+  /* Input Components */
+  .input {
+    @apply flex h-10 w-full rounded-lg border border-secondary-300 bg-white px-3 py-2 text-sm placeholder:text-secondary-500 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 disabled:cursor-not-allowed disabled:opacity-50 dark:border-secondary-600 dark:bg-secondary-800 dark:text-secondary-100 dark:placeholder:text-secondary-400;
+  }
+  
+  .textarea {
+    @apply flex min-h-[80px] w-full rounded-lg border border-secondary-300 bg-white px-3 py-2 text-sm placeholder:text-secondary-500 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 disabled:cursor-not-allowed disabled:opacity-50 dark:border-secondary-600 dark:bg-secondary-800 dark:text-secondary-100 dark:placeholder:text-secondary-400;
+  }
+  
+  /* Game-specific Components */
+  .game-board {
+    @apply relative bg-game-board rounded-2xl shadow-board border-4 border-amber-800;
+    width: var(--game-board-size);
+    height: var(--game-board-size);
+  }
+  
+  .game-cell {
+    @apply absolute flex items-center justify-center transition-all duration-300;
+    width: calc(var(--game-board-size) / 15);
+    height: calc(var(--game-board-size) / 15);
+  }
+  
+  .game-path {
+    @apply bg-game-path border border-amber-700 rounded-sm;
+  }
+  
+  .game-safe {
+    @apply bg-amber-200 border-2 border-amber-600;
+  }
+  
+  .game-home {
+    @apply rounded-lg border-2;
+  }
+  
+  .game-home-red {
+    @apply bg-game-home-red border-red-700;
+  }
+  
+  .game-home-blue {
+    @apply bg-game-home-blue border-blue-700;
+  }
+  
+  .game-home-green {
+    @apply bg-game-home-green border-green-700;
+  }
+  
+  .game-home-yellow {
+    @apply bg-game-home-yellow border-yellow-700;
+  }
+  
+  .game-token {
+    @apply rounded-full shadow-token cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95;
+    width: var(--token-size);
+    height: var(--token-size);
+  }
+  
+  .game-token-red {
+    @apply bg-game-token-red border-2 border-red-700 hover:shadow-glow-red;
+  }
+  
+  .game-token-blue {
+    @apply bg-game-token-blue border-2 border-blue-700 hover:shadow-glow;
+  }
+  
+  .game-token-green {
+    @apply bg-game-token-green border-2 border-green-700 hover:shadow-glow-green;
+  }
+  
+  .game-token-yellow {
+    @apply bg-game-token-yellow border-2 border-yellow-700 hover:shadow-glow-yellow;
+  }
+  
+  .game-dice {
+    @apply bg-white rounded-lg shadow-lg border-2 border-secondary-300 flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-105 active:scale-95;
+    width: var(--dice-size);
+    height: var(--dice-size);
+  }
+  
+  .game-dice:hover {
+    @apply shadow-xl border-primary-400;
+  }
+  
+  .dice-dot {
+    @apply w-2 h-2 bg-secondary-800 rounded-full;
+  }
+  
+  /* Animation Classes */
+  .animate-token-move {
+    animation: tokenMove var(--animation-duration) ease-in-out;
+  }
+  
+  .animate-dice-roll {
+    animation: diceRoll 1s ease-in-out;
+  }
+  
+  .animate-victory {
+    animation: victory 2s ease-in-out infinite;
+  }
+  
+  /* Utility Classes */
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+  
+  .glass-dark {
+    @apply bg-black/10 backdrop-blur-md border border-black/20;
+  }
+  
+  .gradient-primary {
+    @apply bg-gradient-to-r from-primary-600 to-primary-800;
+  }
+  
+  .gradient-secondary {
+    @apply bg-gradient-to-r from-secondary-600 to-secondary-800;
+  }
+  
+  .gradient-success {
+    @apply bg-gradient-to-r from-success-600 to-success-800;
+  }
+  
+  .gradient-game {
+    @apply bg-gradient-to-br from-amber-100 via-orange-50 to-yellow-100;
+  }
+  
+  /* Loading States */
+  .loading {
+    @apply animate-pulse;
+  }
+  
+  .loading-skeleton {
+    @apply bg-secondary-200 dark:bg-secondary-700 rounded animate-pulse;
+  }
+  
+  /* Responsive Game Board */
+  @media (max-width: 640px) {
+    :root {
+      --game-board-size: min(95vw, 95vh, 400px);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    :root {
+      --game-board-size: min(98vw, 70vh, 350px);
+    }
+  }
+}
+
+/* Utility Layer */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  
+  /* Custom animations */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 5px theme('colors.primary.500');
+    }
+    to {
+      box-shadow: 0 0 20px theme('colors.primary.500'), 0 0 30px theme('colors.primary.500');
+    }
+  }
+  
+  /* Print styles */
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+  }
+}
+
+/* Dark mode specific styles */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --shadow-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .game-token {
+    @apply border-4;
+  }
+  
+  .btn {
+    @apply border-2 border-current;
+  }
+}

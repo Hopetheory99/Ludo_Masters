@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Ludo Masters Web3 - Next-Generation Multiplayer Ludo Game</title>
+    <meta name="title" content="Ludo Masters Web3 - Next-Generation Multiplayer Ludo Game">
+    <meta name="description" content="Play the classic Ludo game with Web3 integration, NFT rewards, and cryptocurrency prizes. Join tournaments, collect unique avatars, and compete with players worldwide.">
+    <meta name="keywords" content="ludo, web3, blockchain, nft, cryptocurrency, multiplayer, game, tournament, polygon">
+    <meta name="author" content="Ludo Masters Team">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ludomasters.game/">
+    <meta property="og:title" content="Ludo Masters Web3 - Next-Generation Multiplayer Ludo Game">
+    <meta property="og:description" content="Play the classic Ludo game with Web3 integration, NFT rewards, and cryptocurrency prizes. Join tournaments, collect unique avatars, and compete with players worldwide.">
+    <meta property="og:image" content="https://ludomasters.game/og-image.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ludomasters.game/">
+    <meta property="twitter:title" content="Ludo Masters Web3 - Next-Generation Multiplayer Ludo Game">
+    <meta property="twitter:description" content="Play the classic Ludo game with Web3 integration, NFT rewards, and cryptocurrency prizes. Join tournaments, collect unique avatars, and compete with players worldwide.">
+    <meta property="twitter:image" content="https://ludomasters.game/twitter-image.png">
+    <meta property="twitter:creator" content="@ludomastersweb3">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#1f2937">
+    <meta name="background-color" content="#ffffff">
+    <meta name="display" content="standalone">
+    <meta name="orientation" content="portrait">
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1f2937">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/src/main.tsx" as="script">
+    <link rel="preload" href="/src/styles/index.css" as="style">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    
+    <!-- Performance Hints -->
+    <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
+    
+    <!-- Loading Animation Styles -->
+    <style>
+      #loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+      }
+      
+      .loading-logo {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 2rem;
+        animation: pulse 2s ease-in-out infinite;
+      }
+      
+      .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #374151;
+        border-top: 4px solid #3b82f6;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      .loading-text {
+        color: #e5e7eb;
+        font-family: 'Inter', sans-serif;
+        font-size: 1.125rem;
+        font-weight: 500;
+        margin-top: 1rem;
+        animation: fadeInOut 2s ease-in-out infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.05); opacity: 0.8; }
+      }
+      
+      @keyframes fadeInOut {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+      
+      .fade-out {
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+      <div class="loading-logo">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="45" stroke="#3b82f6" stroke-width="4" fill="none"/>
+          <circle cx="25" cy="25" r="8" fill="#ef4444"/>
+          <circle cx="75" cy="25" r="8" fill="#3b82f6"/>
+          <circle cx="25" cy="75" r="8" fill="#22c55e"/>
+          <circle cx="75" cy="75" r="8" fill="#f59e0b"/>
+          <path d="M50 20 L50 80 M20 50 L80 50" stroke="#6b7280" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Loading Ludo Masters...</div>
+    </div>
+    
+    <!-- App Root -->
+    <div id="root"></div>
+    
+    <!-- Scripts -->
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Remove loading screen when app loads -->
+    <script>
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const loadingScreen = document.getElementById('loading-screen');
+          if (loadingScreen) {
+            loadingScreen.classList.add('fade-out');
+            setTimeout(function() {
+              loadingScreen.remove();
+            }, 500);
+          }
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>
