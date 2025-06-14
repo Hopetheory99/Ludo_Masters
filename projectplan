@@ -1,0 +1,99 @@
+
+
+---
+
+### 🧠 **Codex Engineered Prompt: Ludo Masters Web3 Game (Full Stack Build)**
+
+You are an expert full-stack Web3 game developer. Your task is to build **Ludo Masters**, a next-generation, cross-platform, multiplayer Ludo game with Web3 integration, using best practices for 2025.
+
+---
+
+### 📦 Project Scope
+
+Develop the entire project structure, implement core logic, create a beautiful and responsive UI/UX, and integrate a secure Web3-based economy—all inside a GitHub repository. Automate documentation, deployment, and testing wherever possible.
+
+---
+
+### 🧩 Requirements by Module
+
+#### 1. **Frontend (React + Tailwind + Web3 Libraries)**
+
+* Build a responsive, mobile-first UI using TailwindCSS and React.
+* Key screens: Auth (Web2 + Web3), Lobby, Game Board, Matchmaking, Profile, Settings, Shop.
+* Include interactive components: draggable tokens, animated dice, reactions panel, leaderboard overlays.
+* Integrate wallet connection (MetaMask, WalletConnect) with context-aware UI updates.
+* Optional: support Progressive Web App (PWA) behavior.
+
+#### 2. **Backend (Node.js + Express or Firebase + WebSocket)**
+
+* Implement secure REST APIs for user auth, stats, matchmaking, economy tracking.
+* Real-time game engine via WebSocket for multiplayer logic.
+* Token balance and staking endpoints.
+* Use scalable Firebase or AWS (PlayFab) for matchmaking and live state persistence.
+* Create admin panel endpoints for managing NFTs, bans, and burn events.
+
+#### 3. **Database (PostgreSQL or Firestore)**
+
+* Schema for: Users, Matches, TokenWallets, NFTInventory, Subscriptions, Leaderboards.
+* Track match history, dice roll fairness logs, win/loss analytics, and session stats.
+
+#### 4. **Web3 Integration**
+
+* Use Solidity smart contracts for:
+
+  * Native token (ERC-20): minting, transfers, burn functions.
+  * NFT assets (ERC-721/1155): cosmetic ownership.
+  * Game staking pool and tournament reward mechanisms.
+* Deploy on Polygon or Immutable X.
+* Use ethers.js or web3.js in the frontend to trigger interactions.
+* Include burn logic (e.g., 5–10% burn on every high-value transaction).
+
+#### 5. **Game Logic**
+
+* Implement classic Ludo rules + variants (custom ruleset builder).
+* Turn engine with anti-cheat mechanisms (e.g., verified dice roll via VRF or mock-chainlink).
+* AI bot logic with difficulty settings.
+* Pass-and-play and spectator support.
+
+#### 6. **Monetization & Subscriptions**
+
+* Free, Silver, Gold, and Platinum tiers.
+* Tiered access to avatars, tournaments, analytics, and marketplace.
+* Cosmetic shop using tokens, NFT-based assets, and in-app purchase hooks.
+
+#### 7. **UI/UX Best Practices**
+
+* Follow accessibility standards: ARIA, high contrast mode, text scaling.
+* Add onboarding tutorials, dynamic animations, contextual tooltips.
+* Dynamic themes based on time/weather.
+* Gamified feedback (XP bars, badge popups, reaction animations).
+
+#### 8. **DevOps & CI/CD**
+
+* Auto-deploy frontend on Vercel or Netlify.
+* Backend on Heroku or Cloud Functions.
+* Smart contracts via Hardhat + deployment scripts.
+* Unit & integration tests for all modules (Jest, Playwright, Mocha).
+* Linting, prettier, and GitHub Actions for CI pipelines.
+
+---
+
+### 🛠️ GitHub Instructions
+
+1. Create a GitHub repo named: `ludo-masters-web3`
+2. Add branches:
+
+   * `main`: production-ready
+   * `dev`: feature integration
+   * `ui-prototype`: Figma-to-React conversion
+   * `smart-contracts`: Web3 codebase
+3. Commit frequently with descriptive messages.
+4. Include a `/docs` folder with:
+
+   * README.md with setup and contribution guidelines
+   * `/api` for backend route documentation
+   * `/contracts` with verified contract ABIs
+   * `/ux-guidelines` with UI spec references
+5. Final product should be open-source deployable, secure, and extensible.
+
+---
